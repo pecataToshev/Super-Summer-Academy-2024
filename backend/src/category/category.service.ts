@@ -1,32 +1,83 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { Category } from '@prisma/client';
 import { PrismaService } from '../prisma.service';
-import { CreateCategoryDto, UpdateCategoryDto } from './category.dto';
+import {
+  CategoryDto,
+  CreateCategoryDto,
+  UpdateCategoryDto,
+} from './category.dto';
 
 @Injectable()
 export class CategoryService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async findAll(): Promise<Category[]> {
-    return this.prisma.category.findMany();
+  async findAll(): Promise<CategoryDto[]> {
+    return this.prisma.category
+      .findMany({
+        where: {
+          isDeleted: false,
+        },
+      })
+      .then((x) => x.map((y) => new CategoryDto(y)));
   }
 
-  async findById(id: string): Promise<Category> {
-    return Promise.reject('Not found ' + id);
+  async findByOne(id: string): Promise<CategoryDto> {
+    return this.findById(id).then((x) => new CategoryDto(x));
   }
 
-  async create(createCategoryDto: CreateCategoryDto): Promise<Category> {
-    return Promise.reject('Not implemented');
+  private async findById(id: string): Promise<Category> {
+    const category = await this.prisma.category.findUnique({
+      where: { id, isDeleted: false },
+    });
+    if (!category) {
+      throw new HttpException('Category not found', 404);
+    }
+    return Promise.resolve(category);
   }
 
-  async update({ id, data, }: {
+  async create({ name, coverPhoto }: CreateCategoryDto): Promise<CategoryDto> {
+    const hasData = await this.prisma.category.findMany({
+      where: { name, isDeleted: false },
+    });
+    if (hasData.length > 0) {
+      throw new HttpException('Category already exists', 400);
+    }
+    return this.prisma.category
+      .create({ data: { name, coverPhoto } })
+      .then((x) => new CategoryDto(x));
+  }
+
+  async update({
+    id,
+    data: { name, coverPhoto },
+  }: {
     data: UpdateCategoryDto;
     id: string;
-  }): Promise<Category> {
-    return Promise.reject('Not implemented');
+  }): Promise<CategoryDto> {
+    const category = await this.findById(id);
+    const nameExists = await this.prisma.category.findMany({
+      where: {
+        name,
+        isDeleted: false,
+      },
+    });
+    if (nameExists.length > 0) {
+      throw new HttpException('Category already exists', 400);
+    }
+    return this.prisma.category
+      .update({
+        where: { id },
+        data: { ...category, name, coverPhoto },
+      })
+      .then((x) => new CategoryDto(x));
   }
 
   async delete(id: string): Promise<boolean> {
-    return Promise.reject('Not implemented');
+    await this.findById(id);
+    const result = await this.prisma.category.update({
+      where: { id },
+      data: { isDeleted: true },
+    });
+    return Promise.resolve(Boolean(result));
   }
 }

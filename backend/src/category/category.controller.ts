@@ -7,8 +7,11 @@ import {
   Body,
   Param,
 } from '@nestjs/common';
-import { CreateCategoryDto, UpdateCategoryDto } from './category.dto';
-import { Category } from '@prisma/client';
+import {
+  CategoryDto,
+  CreateCategoryDto,
+  UpdateCategoryDto,
+} from './category.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { CategoryService } from './category.service';
 
@@ -18,19 +21,19 @@ export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
   @Get()
-  async findAll(): Promise<Category[]> {
+  async findAll(): Promise<CategoryDto[]> {
     return this.categoryService.findAll();
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string): Promise<Category> {
-    return this.categoryService.findById(id);
+  async findOne(@Param('id') id: string): Promise<CategoryDto> {
+    return this.categoryService.findByOne(id);
   }
 
   @Post()
   async create(
     @Body() createCategoryDto: CreateCategoryDto,
-  ): Promise<Category> {
+  ): Promise<CategoryDto> {
     return this.categoryService.create(createCategoryDto);
   }
 
@@ -38,7 +41,7 @@ export class CategoryController {
   async update(
     @Param('id') id: string,
     @Body() updateCategoryDto: UpdateCategoryDto,
-  ): Promise<Category> {
+  ): Promise<CategoryDto> {
     return this.categoryService.update({ id, data: updateCategoryDto });
   }
 
