@@ -1,0 +1,41 @@
+name: Build Frontend
+
+on:
+  push:
+    branches:
+      - main # Change this to your main branch name
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }} # Use GitHub token secret
+
+      - name: Extract Git Commit Hash
+        id: vars
+        run: echo "COMMIT_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+
+      - name: Build Docker Image
+        run: |
+          docker build --build-arg ANGULAR_ENV=production -t ghcr.io/pecataToshev/Super-Summer-Academy-2024/frontend:${{ env.COMMIT_HASH }} .
+
+      - name: Push Docker Image to GitHub Container Registry
+        run: |
+          docker push ghcr.io/pecataToshev/Super-Summer-Academy-2024/frontend:${{ env.COMMIT_HASH }}
+
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
