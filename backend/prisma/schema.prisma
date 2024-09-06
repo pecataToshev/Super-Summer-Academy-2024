@@ -29,7 +29,7 @@ model Product {
   category         Category       @relation(fields: [categoryId], references: [id])
   price            Float
   discount         Int?           @default(0)
-  quality          Int            @default(0)
+  quantity         Int            @default(0)
   markAsNew        Boolean        @default(false)
   coverPhoto       String         @db.VarChar(255)
   photos           String[]
