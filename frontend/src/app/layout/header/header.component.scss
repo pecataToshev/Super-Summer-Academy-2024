@@ -1,0 +1,54 @@
+.headerBar {
+   display: flex;
+   position: fixed;
+   width: 100%;
+   top: 0;
+   left: 0;
+   background-color: var(--backgroundPrimary);
+   flex-direction: row;
+   align-items: center;
+   justify-content: center;
+   padding: var(--sideSpace);
+
+   .content {
+      display: flex;
+      width: 100%;
+      max-width: var(--maxContentWidth);
+      align-items: center;
+      justify-content: center;
+      gap: var(--sideSpace);
+
+      .logo {
+         display: flex;
+         width: 120px;
+         align-items: center;
+         margin-right: auto;
+
+         img {
+            width: 100%;
+         }
+      }
+
+      .links {
+         display: flex;
+         align-items: center;
+         gap: var(--sideSpace);
+
+         a {
+            font-weight: 500;
+            opacity: 0.6;
+
+            &:hover {
+               opacity: 1;
+            }
+         }
+      }
+
+      .iconButtons {
+         display: flex;
+         align-items: center;
+         gap: var(--sideSpace);
+         margin-left: auto;
+      }
+   }
+}

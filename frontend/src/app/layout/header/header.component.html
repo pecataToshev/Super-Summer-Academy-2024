@@ -1,0 +1,15 @@
+<header class="headerBar">
+   <div class="content">
+      <a href="/" class="logo">
+         <img src="../../../assets/logo.svg" alt="Logo" />
+      </a>
+
+      <div class="links">
+         <a *ngFor="let link of links" [href]="link.href">{{ link.label }}</a>
+      </div>
+
+      <div class="iconButtons">
+         <app-icon-button *ngFor="let iconButton of iconButtons" [icon]="iconButton" />
+      </div>
+   </div>
+</header>
