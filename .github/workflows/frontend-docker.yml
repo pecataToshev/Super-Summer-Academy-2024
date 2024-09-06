@@ -31,10 +31,12 @@ jobs:
         run: echo "COMMIT_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
       - name: Build Docker Image
+        working-directory: frontend
         run: |
           docker build --build-arg ANGULAR_ENV=production -t ${{ env.DOCKER_URL_PREFIX }}:${{ env.COMMIT_HASH }} .
 
       - name: Push Docker Image to GitHub Container Registry
+        working-directory: frontend
         run: |
           docker push ${{ env.DOCKER_URL_PREFIX }}:${{ env.COMMIT_HASH }}
 
