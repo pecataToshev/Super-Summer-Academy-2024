@@ -6,7 +6,7 @@ on:
       - main # Change this to your main branch name
 
 env:
-  DOCKER_URL_PREFIX: ghcr.io/pecataToshev/super-summer-academy-2024/frontend
+  DOCKER_URL_PREFIX: ghcr.io/pecatatoshev/super-summer-academy-2024/frontend
 
 jobs:
   build-and-deploy:
