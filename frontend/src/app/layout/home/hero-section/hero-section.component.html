@@ -1,3 +1,17 @@
 <section>
-   <app-asset [name]="'heroImage'" [width]="'100%'" [height]="400" />
+   <div class="backgroundImage">
+      <app-asset [name]="'heroImage'" [width]="'100%'" [height]="'100%'" [cover]="true" />
+   </div>
+
+   <div class="content">
+      <div class="box">
+         <p class="preTitle">New Arrival</p>
+         <h1>Discover Our New Collection</h1>
+         <p class="subText">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis.
+         </p>
+
+         <app-button [text]="'BUY NOW'" />
+      </div>
+   </div>
 </section>

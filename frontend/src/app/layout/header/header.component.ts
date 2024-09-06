@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
-import { IconButtonComponent } from "../../common/icon-button/icon-button.component";
+import { IconButtonComponent } from "../../components/common/icon-button/icon-button.component";
 import { AssetName } from "../../types/app";
 
 @Component({

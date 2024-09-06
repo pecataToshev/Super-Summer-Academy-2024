@@ -1,0 +1,51 @@
+section {
+   position: relative;
+   width: 100%;
+   height: 840px;
+   padding-inline: var(--sideSpace);
+
+   .backgroundImage {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+   }
+
+   .content {
+      display: flex;
+      position: relative;
+      width: 100%;
+      max-width: var(--maxContentWidth);
+      flex-direction: row;
+      justify-content: flex-end;
+      margin-inline: auto;
+      padding-top: 190px;
+      z-index: 1;
+
+      .box {
+         width: 520px;
+         background-color: var(--secondary);
+         border-radius: var(--borderRadius);
+         padding: calc(var(--sideSpace) * 2);
+
+         .preTitle {
+            width: 100%;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-top: var(--sideSpace);
+         }
+
+         h1 {
+            font-size: 48px;
+            line-height: 1.3;
+            color: var(--primary);
+            margin-bottom: var(--gap);
+         }
+
+         .subText {
+            margin-bottom: calc(var(--sideSpace) * 2);
+         }
+      }
+   }
+}

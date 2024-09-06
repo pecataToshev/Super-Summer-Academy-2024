@@ -9,6 +9,7 @@
    align-items: center;
    justify-content: center;
    padding: var(--sideSpace);
+   z-index: 100;
 
    .content {
       display: flex;
