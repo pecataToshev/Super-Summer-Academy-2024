@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "Category" (
-    "id" TEXT NOT NULL,
+    "id" UUID NOT NULL,
     "name" VARCHAR(256) NOT NULL,
     "coverPhoto" TEXT,
 
@@ -9,11 +9,11 @@ CREATE TABLE "Category" (
 
 -- CreateTable
 CREATE TABLE "Product" (
-    "id" TEXT NOT NULL,
+    "id" UUID NOT NULL,
     "name" VARCHAR(512) NOT NULL,
     "shortDescription" VARCHAR(512) NOT NULL,
     "description" TEXT NOT NULL,
-    "categoryId" TEXT NOT NULL,
+    "categoryId" UUID NOT NULL,
     "price" DOUBLE PRECISION NOT NULL,
     "discount" INTEGER DEFAULT 0,
     "quality" INTEGER NOT NULL DEFAULT 0,
@@ -28,7 +28,7 @@ CREATE TABLE "Product" (
 
 -- CreateTable
 CREATE TABLE "Order" (
-    "id" TEXT NOT NULL,
+    "id" UUID NOT NULL,
     "firstName" VARCHAR(256) NOT NULL,
     "lastName" VARCHAR(256) NOT NULL,
     "companyName" VARCHAR(256),
@@ -45,9 +45,9 @@ CREATE TABLE "Order" (
 
 -- CreateTable
 CREATE TABLE "OrderProduct" (
-    "id" TEXT NOT NULL,
-    "orderId" TEXT NOT NULL,
-    "productId" TEXT NOT NULL,
+    "id" UUID NOT NULL,
+    "orderId" UUID NOT NULL,
+    "productId" UUID NOT NULL,
     "quantity" INTEGER NOT NULL,
     "unitPrice" DOUBLE PRECISION NOT NULL,
 
@@ -56,7 +56,7 @@ CREATE TABLE "OrderProduct" (
 
 -- CreateTable
 CREATE TABLE "Feedback" (
-    "id" TEXT NOT NULL,
+    "id" UUID NOT NULL,
     "name" VARCHAR(256) NOT NULL,
     "email" VARCHAR(256) NOT NULL,
     "subject" VARCHAR(256) NOT NULL,
@@ -67,10 +67,10 @@ CREATE TABLE "Feedback" (
 
 -- CreateTable
 CREATE TABLE "Review" (
-    "id" TEXT NOT NULL,
+    "id" UUID NOT NULL,
     "value" INTEGER NOT NULL,
     "comment" VARCHAR(256),
-    "productId" VARCHAR(256) NOT NULL,
+    "productId" UUID NOT NULL,
 
     CONSTRAINT "Review_pkey" PRIMARY KEY ("id")
 );

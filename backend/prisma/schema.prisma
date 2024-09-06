@@ -14,18 +14,18 @@ datasource db {
 }
 
 model Category {
-  id         String    @id @default(cuid())
+  id         String    @id @default(uuid()) @db.Uuid
   name       String    @unique @db.VarChar(256)
   coverPhoto String?
   products   Product[]
 }
 
 model Product {
-  id               String         @id @default(cuid())
+  id               String         @id @default(uuid()) @db.Uuid
   name             String         @db.VarChar(512)
   shortDescription String         @db.VarChar(512)
   description      String
-  categoryId       String
+  categoryId       String         @db.Uuid
   category         Category       @relation(fields: [categoryId], references: [id])
   price            Float
   discount         Int?           @default(0)
@@ -40,7 +40,7 @@ model Product {
 }
 
 model Order {
-  id             String         @id @default(cuid())
+  id             String         @id @default(uuid()) @db.Uuid
   products       OrderProduct[]
   firstName      String         @db.VarChar(256)
   lastName       String         @db.VarChar(256)
@@ -55,17 +55,17 @@ model Order {
 }
 
 model OrderProduct {
-  id        String  @id @default(cuid())
-  orderId   String
+  id        String  @id @default(uuid()) @db.Uuid
+  orderId   String  @db.Uuid
   order     Order   @relation(fields: [orderId], references: [id])
-  productId String
+  productId String  @db.Uuid
   product   Product @relation(fields: [productId], references: [id])
   quantity  Int
   unitPrice Float
 }
 
 model Feedback {
-  id      String @id @default(cuid())
+  id      String @id @default(uuid()) @db.Uuid
   name    String @db.VarChar(256)
   email   String @db.VarChar(256)
   subject String @db.VarChar(256)
@@ -73,10 +73,10 @@ model Feedback {
 }
 
 model Review {
-  id      String  @id @default(cuid())
+  id      String  @id @default(uuid()) @db.Uuid
   value   Int     @db.Integer
   comment String? @db.VarChar(256)
 
-  productId String  @db.VarChar(256)
+  productId String  @db.Uuid
   product   Product @relation(fields: [productId], references: [id])
 }
