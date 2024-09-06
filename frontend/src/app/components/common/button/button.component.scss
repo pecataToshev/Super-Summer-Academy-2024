@@ -6,4 +6,14 @@ button {
    outline: none;
    cursor: pointer;
    padding: var(--sideSpace) calc(var(--sideSpace) * 2);
+
+   &:hover {
+      filter: brightness(0.8);
+   }
+
+   &.secondary {
+      color: var(--primary);
+      background-color: var(--backgroundPrimary);
+      border: solid 1px var(--primary);
+   }
 }
