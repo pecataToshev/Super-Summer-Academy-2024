@@ -1,0 +1,35 @@
+.imagesHolder {
+   display: flex;
+   width: 100%;
+   align-items: center;
+   justify-content: center;
+   gap: var(--gap);
+
+   .columnItem {
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap);
+
+      &.left {
+         justify-content: flex-start;
+      }
+
+      &.right {
+         justify-content: flex-end;
+      }
+
+      .rowItem {
+         display: flex;
+         flex-direction: row;
+         gap: var(--gap);
+
+         &.top {
+            align-items: flex-start;
+         }
+
+         &.bottom {
+            align-items: flex-end;
+         }
+      }
+   }
+}

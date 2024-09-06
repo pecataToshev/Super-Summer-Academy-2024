@@ -1,3 +1,12 @@
+:host {
+   width: fit-content;
+   height: fit-content;
+}
+
+img {
+   display: block;
+}
+
 .ofCover {
    object-fit: cover;
 }

@@ -1,6 +1,11 @@
 section {
    width: 100%;
+   background-color: var(--backgroundPrimary);
    padding: calc(var(--sideSpace) * 2) var(--sideSpace);
+
+   &.darkerBackgroundColor {
+      background-color: var(--backgroundTertiary);
+   }
 
    .preText {
       font-weight: 600;
@@ -23,6 +28,6 @@ section {
       width: 100%;
       max-width: var(--maxContentWidth);
       margin-inline: auto;
-      padding-block: calc(var(--sideSpace) * 2);
+      padding-top: calc(var(--sideSpace) * 2);
    }
 }

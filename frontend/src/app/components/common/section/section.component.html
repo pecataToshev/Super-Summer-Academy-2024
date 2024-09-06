@@ -1,13 +1,9 @@
-<section>
+<section [class]="darkerBackgroundColor ? 'darkerBackgroundColor' : ''">
    <p *ngIf="preText" class="preText">{{ preText }}</p>
    <h2 *ngIf="title" class="title">{{ title }}</h2>
    <p *ngIf="description" class="description">{{ description }}</p>
 
-   <container-element [ngSwitch]="limitContentWidth">
-      <ng-content *ngSwitchCase="true"></ng-content>
-
-      <div class="content" *ngSwitchDefault>
-         <ng-content></ng-content>
-      </div>
-   </container-element>
+   <div [class]="!ignoreLimitContentWidth ? 'content' : ''">
+      <ng-content></ng-content>
+   </div>
 </section>

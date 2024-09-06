@@ -1,0 +1,25 @@
+.contentHolder {
+   display: flex;
+   width: 100%;
+   max-width: var(--maxContentWidth);
+   flex-direction: row;
+   align-items: center;
+   gap: var(--sideSpace);
+   margin-inline: auto;
+
+   .content {
+      display: flex;
+      width: 360px;
+      flex-direction: column;
+
+      h1 {
+         color: var(--foregroundPrimary);
+         margin-bottom: var(--gap);
+      }
+
+      p {
+         color: var(--foregroundSecondary);
+         margin-bottom: var(--sideSpace);
+      }
+   }
+}

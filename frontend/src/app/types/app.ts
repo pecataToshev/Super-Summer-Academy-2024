@@ -6,4 +6,13 @@ export type AssetName =
    | "heartLightIcon"
    | "shoppingCartIcon"
    | "shareIcon"
-   | "compareIcon";
+   | "compareIcon"
+   | "inspirationImage1"
+   | "inspirationImage2"
+   | "inspirationImage3"
+   | "inspirationImage4"
+   | "inspirationImage5"
+   | "inspirationImage6"
+   | "inspirationImage7"
+   | "inspirationImage8"
+   | "inspirationImage9";

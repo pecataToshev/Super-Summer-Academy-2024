@@ -12,5 +12,6 @@ export class SectionComponent {
    @Input() preText: string = "";
    @Input() title: string = "";
    @Input() description: string = "";
-   @Input() limitContentWidth: boolean = false;
+   @Input() ignoreLimitContentWidth: boolean = false;
+   @Input() darkerBackgroundColor: boolean = false;
 }
