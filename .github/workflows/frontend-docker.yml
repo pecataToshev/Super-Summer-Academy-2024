@@ -5,6 +5,9 @@ on:
     branches:
       - main # Change this to your main branch name
 
+env:
+  DOCKER_URL_PREFIX: ghcr.io/pecataToshev/super-summer-academy-2024/frontend
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -29,11 +32,11 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build --build-arg ANGULAR_ENV=production -t ghcr.io/pecataToshev/Super-Summer-Academy-2024/frontend:${{ env.COMMIT_HASH }} .
+          docker build --build-arg ANGULAR_ENV=production -t ${{ env.DOCKER_URL_PREFIX }}:${{ env.COMMIT_HASH }} .
 
       - name: Push Docker Image to GitHub Container Registry
         run: |
-          docker push ghcr.io/pecataToshev/Super-Summer-Academy-2024/frontend:${{ env.COMMIT_HASH }}
+          docker push ${{ env.DOCKER_URL_PREFIX }}:${{ env.COMMIT_HASH }}
 
     permissions:
       contents: read
