@@ -1,0 +1,28 @@
+section {
+   width: 100%;
+   padding: calc(var(--sideSpace) * 2) var(--sideSpace);
+
+   .preText {
+      font-weight: 600;
+      text-align: center;
+      color: var(--foregroundPrimary);
+      margin-bottom: var(--sideSpace);
+   }
+
+   .title {
+      text-align: center;
+      color: var(--foregroundPrimary);
+   }
+
+   .description {
+      text-align: center;
+      color: var(--foregroundSecondary);
+   }
+
+   .content {
+      width: 100%;
+      max-width: var(--maxContentWidth);
+      margin-inline: auto;
+      padding-block: calc(var(--sideSpace) * 2);
+   }
+}
