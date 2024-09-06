@@ -1,1 +1,35 @@
-<p>product-card works!</p>
+<div class="card">
+   <img [src]="product.coverPhoto" alt="" />
+
+   <div class="content">
+      <h3>{{ product.name }}</h3>
+      <p class="description">{{ product.shortDescription }}</p>
+
+      <div class="priceHolder">
+         <p>Rp {{ product.price }}</p>
+      </div>
+   </div>
+
+   <div *ngIf="product.discount" class="discountBadge">-{{ product.discount }}%</div>
+
+   <div *ngIf="product.markAsNew" class="isNewBadge">New</div>
+
+   <div class="overlay">
+      <app-button text="Add to cart" type="secondary" />
+
+      <div class="actions">
+         <div class="item">
+            <app-asset name="shareIcon" />
+            <p>Share</p>
+         </div>
+         <div class="item">
+            <app-asset name="compareIcon" />
+            <p>Compare</p>
+         </div>
+         <div class="item">
+            <app-asset name="heartLightIcon" />
+            <p>Like</p>
+         </div>
+      </div>
+   </div>
+</div>
