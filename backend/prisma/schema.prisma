@@ -1,0 +1,82 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id         String    @id @default(cuid())
+  name       String    @unique @db.VarChar(256)
+  coverPhoto String?
+  products   Product[]
+}
+
+model Product {
+  id               String         @id @default(cuid())
+  name             String         @db.VarChar(512)
+  shortDescription String         @db.VarChar(512)
+  description      String
+  categoryId       String
+  category         Category       @relation(fields: [categoryId], references: [id])
+  price            Float
+  discount         Int?           @default(0)
+  quality          Int            @default(0)
+  markAsNew        Boolean        @default(false)
+  coverPhoto       String         @db.VarChar(255)
+  photos           String[]
+  sizes            String[]
+  colors           String[]
+  OrderProduct     OrderProduct[]
+  Review           Review[]
+}
+
+model Order {
+  id             String         @id @default(cuid())
+  products       OrderProduct[]
+  firstName      String         @db.VarChar(256)
+  lastName       String         @db.VarChar(256)
+  companyName    String?        @db.VarChar(256)
+  country        String         @db.VarChar(256)
+  city           String         @db.VarChar(256)
+  address        String         @db.VarChar(512)
+  postalCode     String         @db.VarChar(20)
+  phoneNumber    String         @db.VarChar(20)
+  email          String         @db.VarChar(256)
+  additionalInfo String?        @db.VarChar(1024)
+}
+
+model OrderProduct {
+  id        String  @id @default(cuid())
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id])
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  quantity  Int
+  unitPrice Float
+}
+
+model Feedback {
+  id      String @id @default(cuid())
+  name    String @db.VarChar(256)
+  email   String @db.VarChar(256)
+  subject String @db.VarChar(256)
+  message String @db.VarChar(2048)
+}
+
+model Review {
+  id      String  @id @default(cuid())
+  value   Int     @db.Integer
+  comment String? @db.VarChar(256)
+
+  productId String  @db.VarChar(256)
+  product   Product @relation(fields: [productId], references: [id])
+}

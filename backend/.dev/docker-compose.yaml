@@ -1,0 +1,18 @@
+version: "3.9"
+
+name: dev-super-summer-academy-2024
+
+services:
+  db:
+    image: postgres:15.1-alpine3.17
+
+    ports:
+      - "5432:5432"
+
+    environment:
+      POSTGRES_DB: dev-super-summer-academy-2024
+      POSTGRES_USER: dev-super-summer-academy-2024
+      POSTGRES_PASSWORD: dev-super-summer-academy-2024
+
+    volumes:
+      - ./data/db:/data/postgres:Z
