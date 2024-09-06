@@ -7,6 +7,7 @@ on:
 
 env:
   DOCKER_URL_PREFIX: ghcr.io/pecatatoshev/super-summer-academy-2024/frontend
+  COMMIT_HASH: latest
 
 jobs:
   build-and-deploy:
@@ -26,9 +27,9 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }} # Use GitHub token secret
 
-      - name: Extract Git Commit Hash
-        id: vars
-        run: echo "COMMIT_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+      # - name: Extract Git Commit Hash
+      #   id: vars
+      #   run: echo "COMMIT_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
       - name: Build Docker Image
         working-directory: frontend
