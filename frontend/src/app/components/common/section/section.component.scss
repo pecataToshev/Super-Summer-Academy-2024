@@ -28,6 +28,9 @@ section {
       width: 100%;
       max-width: var(--maxContentWidth);
       margin-inline: auto;
-      padding-top: calc(var(--sideSpace) * 2);
+
+      &.withTopPadding {
+         padding-top: calc(var(--sideSpace) * 2);
+      }
    }
 }

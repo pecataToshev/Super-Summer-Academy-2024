@@ -1,0 +1,13 @@
+<ng-container *ngIf="!isLoading; else loaderRef">
+   <ng-container *ngIf="!error; else errorRef">
+      <ng-content></ng-content>
+   </ng-container>
+
+   <ng-template #errorRef>
+      <app-error-text-holder errorMessage="Error loading products" />
+   </ng-template>
+</ng-container>
+
+<ng-template #loaderRef>
+   <div class="loader">Loading . . .</div>
+</ng-template>

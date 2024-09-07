@@ -1,1 +1,4 @@
-<button [class]="type">{{ text }}</button>
+<button [class]="type" *ngIf="href === undefined; else linkRef">{{ text }}</button>
+<ng-template #linkRef>
+   <a [href]="href" [class]="type">{{ text }}</a>
+</ng-template>

@@ -1,0 +1,21 @@
+<div class="section">
+   <div class="backgroundImage">
+      <app-asset name="parallaxBackgroundImage" width="100%" height="100%" />
+   </div>
+
+   <div class="content">
+      <h1>{{ title }}</h1>
+
+      <div class="pathHolder">
+         <ng-container *ngFor="let path of paths; let i = index">
+            <span *ngIf="i !== paths.length - 1">
+               <a [href]="path.href">{{ path.text }}</a>
+               <span> > </span>
+            </span>
+            <span *ngIf="i === paths.length - 1">
+               {{ path.text }}
+            </span>
+         </ng-container>
+      </div>
+   </div>
+</div>

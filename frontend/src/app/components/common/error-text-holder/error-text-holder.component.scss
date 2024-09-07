@@ -1,0 +1,11 @@
+.error {
+   display: flex;
+   color: var(--error);
+   flex-direction: row;
+   align-items: center;
+   background-color: var(--error2);
+   border-radius: var(--borderRadius);
+   border: solid 1px var(--error);
+   gap: var(--sideSpace);
+   padding: var(--gap) var(--sideSpace);
+}

@@ -3,7 +3,9 @@
    <h2 *ngIf="title" class="title">{{ title }}</h2>
    <p *ngIf="description" class="description">{{ description }}</p>
 
-   <div [class]="!ignoreLimitContentWidth ? 'content' : ''">
+   <div
+      [class]="(!ignoreLimitContentWidth ? 'content' : '') + (preText || title || description ? ' withTopPadding' : '')"
+   >
       <ng-content></ng-content>
    </div>
 </section>
