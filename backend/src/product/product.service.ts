@@ -78,7 +78,7 @@ export class ProductService {
       markAsNew: d.markAsNew,
       sizes: d.sizes,
       colors: d.colors,
-      photos: d?.photos?.map((p) => p.id),
+      photos: (d as any)?.photos?.map((p: { id: string }) => p.id),
     }));
   }
 
