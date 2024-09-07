@@ -1,7 +1,7 @@
 export class ProductFilters {
   categoryId?: string;
-  itemsPerPage?: number;
-  page?: number;
+  itemsPerPage?: string;
+  page?: string;
   priceSort?: 'asc' | 'desc';
 }
 

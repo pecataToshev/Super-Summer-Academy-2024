@@ -30,8 +30,10 @@ export class ProductService {
           isDeleted: false,
           categoryId: options?.categoryId,
         },
-        skip: (options?.page - 1) * options?.itemsPerPage || undefined,
-        take: options?.itemsPerPage || undefined,
+        skip:
+          (parseInt(options?.page) - 1) * parseInt(options?.itemsPerPage) ||
+          undefined,
+        take: parseInt(options?.itemsPerPage) || undefined,
         orderBy: {
           price: options.priceSort || undefined,
         },
