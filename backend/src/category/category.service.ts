@@ -21,18 +21,18 @@ export class CategoryService {
       .then((x) => x.map((y) => new CategoryDto(y)));
   }
 
-  async findByOne(id: string): Promise<CategoryDto> {
+  async findOne(id: string): Promise<CategoryDto> {
     return this.findById(id).then((x) => new CategoryDto(x));
   }
 
   private async findById(id: string): Promise<Category> {
-    const category = await this.prisma.category.findUnique({
+    const category = await this.prisma.category.findMany({
       where: { id, isDeleted: false },
     });
-    if (!category) {
+    if (category.length === 0) {
       throw new HttpException('Category not found', 404);
     }
-    return Promise.resolve(category);
+    return Promise.resolve(category[0]);
   }
 
   async create({ name, coverPhoto }: CreateCategoryDto): Promise<CategoryDto> {
