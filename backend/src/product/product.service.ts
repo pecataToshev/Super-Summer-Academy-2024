@@ -30,10 +30,10 @@ export class ProductService {
           isDeleted: false,
           categoryId: options?.categoryId,
         },
-        skip: (options?.page - 1) * options?.itemsPerPage,
-        take: options?.itemsPerPage,
+        skip: (options?.page - 1) * options?.itemsPerPage || undefined,
+        take: options?.itemsPerPage || undefined,
         orderBy: {
-          price: options.priceSort,
+          price: options.priceSort || undefined,
         },
       })
       .then((all) =>
