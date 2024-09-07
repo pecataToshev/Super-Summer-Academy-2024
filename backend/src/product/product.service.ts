@@ -30,6 +30,11 @@ export class ProductService {
           isDeleted: false,
           categoryId: options?.categoryId,
         },
+        skip: (options?.page - 1) * options?.itemsPerPage,
+        take: options?.itemsPerPage,
+        orderBy: {
+          price: options.priceSort,
+        },
       })
       .then((all) =>
         all.map((d) => ({
@@ -40,6 +45,7 @@ export class ProductService {
           markAsNew: d.markAsNew,
           coverPhoto: d.photos[0]?.photo,
           price: d.price,
+          discount: d.discount,
         })),
       );
   }

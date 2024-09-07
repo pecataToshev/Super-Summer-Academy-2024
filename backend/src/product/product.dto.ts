@@ -1,5 +1,8 @@
 export class ProductFilters {
   categoryId?: string;
+  itemsPerPage?: number;
+  page?: number;
+  priceSort?: 'asc' | 'desc';
 }
 
 export class CreateProductDto {
@@ -33,10 +36,11 @@ export class ShortProductDto {
   id: string;
   name: string;
   shortDescription: string;
-  quantity: number;
   markAsNew: boolean;
   coverPhoto: string;
   price: number;
+  discount?: number;
+  quantity: number;
 }
 
 export class ProductDto {
