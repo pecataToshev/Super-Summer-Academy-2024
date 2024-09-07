@@ -59,6 +59,7 @@ export class CategoryService {
       where: {
         name,
         isDeleted: false,
+        id: { not: id },
       },
     });
     if (nameExists.length > 0) {
