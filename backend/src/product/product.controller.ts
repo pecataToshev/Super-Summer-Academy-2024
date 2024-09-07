@@ -17,6 +17,7 @@ import {
   ShortProductDto,
   UpdateProductDto,
 } from './product.dto';
+import { PaginationDto } from '../common/common.dto';
 
 @ApiTags('products')
 @Controller('products')
@@ -24,7 +25,9 @@ export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
   @Get()
-  async findAll(@Query() options?: ProductFilters): Promise<ShortProductDto[]> {
+  async findAll(
+    @Query() options?: ProductFilters,
+  ): Promise<PaginationDto<ShortProductDto>> {
     return this.productService.findProducts(options);
   }
 

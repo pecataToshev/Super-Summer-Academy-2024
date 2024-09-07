@@ -55,4 +55,10 @@ export class ProductDto {
   markAsNew: boolean;
   sizes: string[];
   colors: string[];
+  photos: {
+    photo: string;
+    isCover: boolean;
+  }[];
+  reviewsTotalCount: number;
+  reviewsAverageMark: number;
 }

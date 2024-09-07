@@ -46,11 +46,11 @@ model Product {
 
   isDeleted Boolean @default(false)
 
-  photos       ProductPhoto[]
-  sizes        String[]
-  colors       String[]
-  OrderProduct OrderProduct[]
-  Review       Review[]
+  photos  ProductPhoto[]
+  sizes   String[]
+  colors  String[]
+  orders  OrderProduct[]
+  reviews Review[]
 }
 
 model Order {
